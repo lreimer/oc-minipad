@@ -1,0 +1,14 @@
+[
+  {
+    "project": "default",
+    "mode": "DYNAMIC",
+    "deployments": []
+  },
+  {
+    "project": "kube-system",
+    "mode": "STATIC",
+    "deployments": [
+      "coredns"
+    ]
+  }
+]
