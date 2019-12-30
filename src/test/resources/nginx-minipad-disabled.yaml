@@ -1,13 +1,12 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: DeploymentConfig
 metadata:
   name: nginx-minipad-enabled
   labels:
     oc-minipad/enabled: "false"
 spec:
   selector:
-    matchLabels:
-      app: nginx-minipad-enabled
+    app: nginx-minipad-enabled
   replicas: 4
   template:
     metadata:

@@ -1,13 +1,12 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: DeploymentConfig
 metadata:
   name: busybox-minipad-enabled
   labels:
     oc-minipad/enabled: "true"
 spec:
   selector:
-    matchLabels:
-      app: busybox-minipad-enabled
+    app: busybox-minipad-enabled
   replicas: 8
   template:
     metadata:
