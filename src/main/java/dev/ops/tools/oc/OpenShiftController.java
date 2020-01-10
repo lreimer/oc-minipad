@@ -65,6 +65,7 @@ public class OpenShiftController implements Watcher<DeploymentConfig> {
         boolean enabled = Boolean.parseBoolean(labels.getOrDefault(OC_MINIPAD_ENABLED, Boolean.FALSE.toString()));
         if (!enabled) {
             LOGGER.debug("Skipping DeploymentConfig {}, not oc-minipad/enabled.", deployment.getMetadata().getName());
+            return;
         }
 
         PodList podList = client.pods().inNamespace(namespace.getName()).withLabels(deployment.getSpec().getSelector()).list();
