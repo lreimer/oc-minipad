@@ -35,7 +35,6 @@ public class OpenShiftMinipadController extends LaunchpadDevice {
     public void initialize() {
         midiSystem.initialize(this);
         reset();
-        update();
 
         openShiftController.register(s -> {
             if (Objects.equals(namespace, s)) {
@@ -43,6 +42,8 @@ public class OpenShiftMinipadController extends LaunchpadDevice {
             }
         });
         openShiftController.initialize();
+
+        update();
     }
 
     @Override
