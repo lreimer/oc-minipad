@@ -1,13 +1,12 @@
 package dev.ops.tools.oc;
 
 import io.fabric8.kubernetes.api.model.PodList;
-import io.fabric8.kubernetes.api.model.apps.Deployment;
-import io.fabric8.kubernetes.api.model.apps.DoneableDeployment;
 import io.fabric8.kubernetes.client.KubernetesClientException;
 import io.fabric8.kubernetes.client.Watcher;
-import io.fabric8.kubernetes.client.dsl.RollableScalableResource;
 import io.fabric8.openshift.api.model.DeploymentConfig;
+import io.fabric8.openshift.api.model.DoneableDeploymentConfig;
 import io.fabric8.openshift.client.OpenShiftClient;
+import io.fabric8.openshift.client.dsl.DeployableScalableResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -129,8 +128,7 @@ public class OpenShiftController implements Watcher<DeploymentConfig> {
 
     public void scale(OpenShiftProject openShiftProject, OpenShiftDeployment openShiftDeployment, int replicas) {
         LOGGER.info("Scaling DeploymentConfig {} to {} replicas.", openShiftDeployment.getName(), replicas);
-        RollableScalableResource<Deployment, DoneableDeployment> deployment = client.apps().deployments()
-                .inNamespace(openShiftProject.getName()).withName(openShiftDeployment.getName());
-        deployment.scale(replicas);
+        DeployableScalableResource<DeploymentConfig, DoneableDeploymentConfig> deploymentConfig = client.deploymentConfigs().inNamespace(openShiftProject.getName()).withName(openShiftDeployment.getName());
+        deploymentConfig.scale(replicas);
     }
 }
