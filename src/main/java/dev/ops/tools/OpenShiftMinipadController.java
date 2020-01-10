@@ -109,7 +109,7 @@ public class OpenShiftMinipadController extends LaunchpadDevice {
         int size = ns.getDeployments().size();
         for (int i = 0; i < size && i < 8; i++) {
             OpenShiftDeployment deployment = ns.getDeployment(i);
-            LOGGER.info("Displaying Deployment {} at row {}", deployment.getName(), i);
+            LOGGER.info("Displaying DeploymentConfig {} at row {}", deployment.getName(), i);
 
             Collection<String> status = deployment.getPods().values();
             List<LaunchpadColor> colors = status.stream().map(LaunchpadColor::forStatus).collect(Collectors.toList());
